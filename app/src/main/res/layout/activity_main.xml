@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent" android:layout_width="match_parent" android:animateLayoutChanges="true">
+
+    <TextView
+        android:id="@+id/tickoffText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Tick Off!"
+        android:textColor="@android:color/primary_text_dark"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="32sp" />
+    <RelativeLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tickoffText"
+        android:paddingHorizontal="16dp"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Progress"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/primary_text_dark"/>
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressText"
+            android:layout_marginBottom="4dp"
+            android:indeterminate="false"
+            />
+        <TextView
+            android:id="@+id/progressPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="50%"
+            android:layout_below="@id/progressBar"
+            android:textSize="14sp"
+            android:textColor="@android:color/primary_text_dark"/>
+        <TextView
+            android:id="@+id/progressFraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="3/6"
+            android:layout_below="@id/progressBar"
+            android:textSize="14sp"
+            android:textColor="@android:color/primary_text_dark"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasksRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressContainer"
+        app.layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:nestedScrollingEnabled="true" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/secondary"
+        android:src="@drawable/ic_baseline_add"/>
+</RelativeLayout>
