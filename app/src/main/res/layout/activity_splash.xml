@@ -2,10 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:animateLayoutChanges="true"
+    android:background="@color/white">
+
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/ic_tickoff_app_icon"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/appLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="32dp"
+        app:tint="@color/primary"
+        android:src="@drawable/ic_tickoff_app_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/appLogo"
+        android:layout_centerHorizontal="true"
+        android:text="Tick Off!"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:textSize="28sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appLogo"
+        android:layout_centerHorizontal="true"
+        android:text="For your daily goals"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/link"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="8dp"
+        android:text="@string/credits"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="32dp"
+        android:autoLink="web"
+        android:text="@string/link"
+        android:textColor="@color/black" />
+
 </RelativeLayout>

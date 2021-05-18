@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tick Off!</string>
+    <string name="credits">Made with ❤ by Snehil</string>
+    <string name="link">https://snehil.tech</string>
 </resources>

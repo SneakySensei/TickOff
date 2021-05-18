@@ -1,6 +1,8 @@
 package tech.snehil.tickoff.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +47,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         ToDoModel item = todoList.get(position);
         holder.task.setText(item.getTask());
         holder.task.setChecked(item.getStatus() != 0);
+        if(item.getStatus()==1){
+            holder.task.setPaintFlags(holder.task.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.task.setTypeface(null, Typeface.ITALIC);
+        } else {
+            holder.task.setPaintFlags(holder.task.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.task.setTypeface(null, Typeface.NORMAL);
+        }
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -52,8 +61,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                 if(compoundButton.isPressed()){
                     if(isChecked){
                         db.updateStatus(item.getId(), 1);
+                        holder.task.setPaintFlags(holder.task.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        holder.task.setTypeface(null, Typeface.ITALIC);
                     } else {
                         db.updateStatus(item.getId(), 0);
+                        holder.task.setPaintFlags(holder.task.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                        holder.task.setTypeface(null, Typeface.NORMAL);
                     }
                 }
 
@@ -120,11 +133,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         }
 
         if(completed==totalTasks && totalTasks != 0){
-            progressPercent.setTextColor(ContextCompat.getColor(getContext(), R.color.primary));
-            progressFraction.setTextColor(ContextCompat.getColor(getContext(), R.color.primary));
+            progressPercent.setTextColor(ContextCompat.getColor(getContext(), R.color.secondary));
+            progressFraction.setTextColor(ContextCompat.getColor(getContext(), R.color.secondary));
+            progressBar.setIndicatorColor(ContextCompat.getColor(getContext(), R.color.secondary));
         } else {
-            progressPercent.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-            progressFraction.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+            progressPercent.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+            progressFraction.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+            progressBar.setIndicatorColor(ContextCompat.getColor(getContext(), R.color.primary));
         }
     }
 

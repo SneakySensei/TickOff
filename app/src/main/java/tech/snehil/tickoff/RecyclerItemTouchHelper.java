@@ -36,18 +36,12 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
             builder.setMessage("Are you sure you want to delete this task?");
-            builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    adapter.deleteItem(position);
-                }
-            });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    adapter.notifyItemChanged(viewHolder.getAbsoluteAdapterPosition());
-                }
-            });
+
+            builder.setPositiveButton("Confirm", (dialogInterface, i) -> adapter.deleteItem(position));
+
+            builder.setCancelable(true);
+            builder.setOnDismissListener(dialogInterface -> adapter.notifyItemChanged(viewHolder.getAbsoluteAdapterPosition()));
+
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
@@ -67,10 +61,10 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
         if(dX>0){
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_edit);
-            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.primary));
+            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.secondary));
         } else {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
-            background = new ColorDrawable(Color.parseColor("#f44336"));
+            background = new ColorDrawable(Color.parseColor("#e53935"));
         }
 
         assert icon != null;

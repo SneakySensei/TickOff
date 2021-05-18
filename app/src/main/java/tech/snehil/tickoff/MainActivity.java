@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
 
         db = new DatabaseHandler(this);
         db.openDatabase();
@@ -113,11 +112,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         }
 
         if(completed==totalTasks && totalTasks != 0){
-            progressPercent.setTextColor(ContextCompat.getColor(this, R.color.primary));
-            progressFraction.setTextColor(ContextCompat.getColor(this, R.color.primary));
+            progressPercent.setTextColor(ContextCompat.getColor(this, R.color.secondary));
+            progressFraction.setTextColor(ContextCompat.getColor(this, R.color.secondary));
+            progressBar.setIndicatorColor(ContextCompat.getColor(this, R.color.secondary));
+
         } else {
-            progressPercent.setTextColor(ContextCompat.getColor(this, R.color.white));
-            progressFraction.setTextColor(ContextCompat.getColor(this, R.color.white));
+            progressPercent.setTextColor(ContextCompat.getColor(this, R.color.black));
+            progressFraction.setTextColor(ContextCompat.getColor(this, R.color.black));
+            progressBar.setIndicatorColor(ContextCompat.getColor(this, R.color.primary));
         }
     }
 }
